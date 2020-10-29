@@ -1,4 +1,4 @@
-version: "2"
+version: "3"
 services:
     php-apache:
         image: domainadd
@@ -7,5 +7,3 @@ services:
             - 8080:80
         env_file: 
             - .env
-        volumes:
-            - /src/:/var/www/html
