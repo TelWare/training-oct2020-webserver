@@ -58,7 +58,7 @@
 		</div>
 		<BR>
 <div id="login-submit" style="padding-bottom: 15px;">
-        		<div class="submit"><input class="btn btn-large color-primary" update="#login" complete="hideModalIf(&quot;#login&quot;);" type="submit" value="Log In"></div>    		</div>	
+        		<div class="submit"><input class="btn btn-large color-primary" update="#login" complete="hideModalIf(&quot;#login&quot;);" type="submit" value="Create Domain"></div>    		</div>	
 	</div>
 	<div id="footer">
 					<p>Copyright &#169; 2020 by TelWare Corporation</p>	
