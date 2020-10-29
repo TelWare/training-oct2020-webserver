@@ -1,10 +1,16 @@
 <?php
 
-define("SERVER", "getenv('SERVER')");
-define("SUPERUSER", "getenv('SUPERUSER')"); //label is super user but really should can be reseller too
-define("PASSWORD", "getenv('PASSWORD')");
-define("CLIENTID", "getenv('CLIENTID')");
-define("CLIENTSECRET", "getenv('CLIENTSECRET')");
+//$SERVER = $_ENV['SERVER'];
+//$SUPERUSER = $_ENV['SUPERUSER'];
+//$PASSWORD = $_ENV['PASSWORD'];
+//$CLIENTID = $_ENV['CLIENTID'];
+//$CLIENTSECRET = $_ENV['CLIENTSECRET'];
+
+define("SERVER", $_ENV['SERVER']);
+define("SUPERUSER", $_ENV['SUPERUSER']); //label is super user but really should can be reseller too
+define("PASSWORD", $_ENV['PASSWORD']);
+define("CLIENTID", $_ENV['CLIENTID']);
+define("CLIENTSECRET", $_ENV['CLIENTSECRET']);
 
 if (!isset($_REQUEST["reseller"]) && !isset($_REQUEST["domain"]))
   {
@@ -136,8 +142,8 @@ $query = array(
     'action' => "read",
     'responder' => "AvailableDID",
     'dialplan' => "DID Table",
-    'plan_description' => "Available",
-    'territory' => "AakerCo",
+    'plan_description' => "Temp Number",
+    'territory' => "$reseller",
     'format' => "json"
 );
 $DIDs  = __doCurl("https://" . SERVER . "/ns-api/", CURLOPT_POST, "Authorization: Bearer " . $token, $query, null, $http_response);
@@ -166,7 +172,7 @@ if (isset($DIDsJson[0]['matchrule']))
   } //isset($DIDsJson[0]['matchrule'])
 else
   {
-    header('Location: signup.php?error=noResources');
+    header('Location: signupdomain.php?error=noResources');
   }
 
 
@@ -648,7 +654,7 @@ $query = array(
     'last_name' => "One",
     'dir_list' => "no",
     'dir_anc' => "no",
-    'user' => '701',
+    'user' => '9001',
     'srv_code' => 'system-queue',
     'area_code' => $areaCode,
     'callid_name' => $reseller,
@@ -662,7 +668,7 @@ $query = array(
     'object' => 'callqueue',
     'action' => "create",
     'domain' => $domain,
-    'queue' => "701",
+    'queue' => "9001",
     'huntgroup_option' => "Call Park",
     'description' => "Call Park One"
 );
@@ -672,10 +678,10 @@ $query = array(
     'object' => 'answerrule',
     'action' => "create",
     'domain' => $domain,
-    'user' => "701",
+    'user' => "9001",
     'time_frame' => "*",
     'priority' => "0",
-    'for_parameters' => "queue_701",
+    'for_parameters' => "queue_9001",
     'for_control' => "e",
     'dnd_enable' => "0",
     'enable' => "1",
@@ -693,9 +699,9 @@ $query = array(
     'dialplan' => $domain,
     'matchrule' => "*",
     'responder' => "sip:start@call-queuing",
-    'matchrule' => "queue_701",
+    'matchrule' => "queue_9001",
     'to_scheme' => "[*]",
-    'to_user' => "701",
+    'to_user' => "9001",
     'to_host' => $domain,
     'plan_description' => "To Queue"
     
@@ -713,7 +719,7 @@ $query = array(
     'last_name' => "Two",
     'dir_list' => "no",
     'dir_anc' => "no",
-    'user' => '702',
+    'user' => '9002',
     'srv_code' => 'system-queue',
     'area_code' => $areaCode,
     'callid_name' => $reseller,
@@ -727,7 +733,7 @@ $query = array(
     'object' => 'callqueue',
     'action' => "create",
     'domain' => $domain,
-    'queue' => "702",
+    'queue' => "9002",
     'huntgroup_option' => "Call Park",
     'description' => "Call Park Two"
 );
@@ -737,10 +743,10 @@ $query = array(
     'object' => 'answerrule',
     'action' => "create",
     'domain' => $domain,
-    'user' => "702",
+    'user' => "9002",
     'time_frame' => "*",
     'priority' => "0",
-    'for_parameters' => "queue_702",
+    'for_parameters' => "queue_9002",
     'for_control' => "e",
     'dnd_enable' => "0",
     'enable' => "1",
@@ -758,9 +764,9 @@ $query = array(
     'dialplan' => $domain,
     'matchrule' => "*",
     'responder' => "sip:start@call-queuing",
-    'matchrule' => "queue_702",
+    'matchrule' => "queue_9002",
     'to_scheme' => "[*]",
-    'to_user' => "702",
+    'to_user' => "9002",
     'to_host' => $domain,
     'plan_description' => "To Queue"
     
@@ -929,7 +935,7 @@ function __doCurl($url, $method, $authorization, $query, $postFields, &$http_res
 	type="text/css">
 
 <link rel="stylesheet"
-	href="https://sandbox-core1.telware.net/portal/css/portal.php?background=%23eeefe9&primary1=%237f223c&primary2=%23c0919e&bar1=%238c8c8c&bar2=%23cccccc"
+	href="https://sandbox-core1.telware.net/portal/css/portal.php?background=%23eeefe9&primary1=%21865B1&primary2=%2338A6DE&bar1=%238c8c8c&bar2=%23cccccc"
 	type="text/css">
 
 
@@ -946,7 +952,7 @@ function __doCurl($url, $method, $authorization, $query, $postFields, &$http_res
 
 
 					<img
-						src="https://sandbox-core1.telware.net/SiPbx/getimage.php?server=oneclouduc.telware.net&filename=portal_landing.png&server=oneclouduc.telware.net" />
+						src="https://sandbox-core1.telware.net/SiPbx/getimage.php?server=oneclouduc.telware.net&filename=portal_landing.png&server=oneclouduc.telware.net" style="width:302px;height:56px;" />
 				</div>
 
 				<div id="login-text"
@@ -954,9 +960,9 @@ function __doCurl($url, $method, $authorization, $query, $postFields, &$http_res
 
 
 					Thank you! You should be recieving a email shortly. Please check
-					your Spam filter if you do not see it withen 5 minutes.</div>
+					your Spam filter if you do not see it within 5 minutes.</div>
 
-				<form action="signup.php" class="form-stacked" id="LoginLoginForm"
+				<form action="signupdomain.php" class="form-stacked" id="LoginLoginForm"
 					method="get" accept-charset="utf-8">
 					<div style="display: none;">
 						<input type="hidden" name="_method" value="POST" />
