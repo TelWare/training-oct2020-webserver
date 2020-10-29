@@ -1,7 +1,4 @@
-FROM python
-WORKDIR /app
-ADD . /app
-RUN pip install -r requirements.txt
+FROM php:5.6-apache
+WORKDIR /var/www/html
 EXPOSE 80
-ENV NAME Docker Pro
-CMD ["python", "app.py"]
+COPY src/ /var/www/html/
