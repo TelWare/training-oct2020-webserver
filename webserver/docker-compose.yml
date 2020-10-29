@@ -3,10 +3,10 @@ services:
     php-apache:
         image: domainadd
         build: .
+        hostname: domainadd
         ports:
             - 8080:80
         env_file: 
             - .env
         volumes:
             - ./src/:/var/www/html
-            - ./php/custom.ini:/usr/local/etc/php/conf.d/custom.ini
