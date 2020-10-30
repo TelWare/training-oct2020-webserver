@@ -1,11 +1,5 @@
 <?php
 
-//$SERVER = $_ENV['SERVER'];
-//$SUPERUSER = $_ENV['SUPERUSER'];
-//$PASSWORD = $_ENV['PASSWORD'];
-//$CLIENTID = $_ENV['CLIENTID'];
-//$CLIENTSECRET = $_ENV['CLIENTSECRET'];
-
 define("SERVER", $_ENV['SERVER']);
 define("SUPERUSER", $_ENV['SUPERUSER']); //label is super user but really should can be reseller too
 define("PASSWORD", $_ENV['PASSWORD']);
@@ -101,8 +95,16 @@ $query = array(
     'object' => 'domain',
     'action' => "create",
     'domain' => $domain,
-    'territory' => $reseller
-    
+    'territory' => $reseller,
+    'call_limit' => '5',
+    'call_limit_ext' => '5',
+    'max_user' => '5',
+    'max_call_queue' => '5',
+    'max_aa' => '5',
+    'max_conference' => '5',
+    'max_department' => '5',
+    'max_site' => '5',
+    'max_device' => '5'
 );
 __doCurl("https://" . SERVER . "/ns-api/", CURLOPT_POST, "Authorization: Bearer " . $token, $query, null, $http_response);
 
@@ -194,7 +196,7 @@ $query    = array(
     'callid_name' => $reseller,
     'callid_nmbr' => $newDID,
     'callid_emgr' => $newDID,
-    'vmail_transcribe' => "mutare",
+    'vmail_transcribe' => "google",
     'subscriber_pin' => $PASSWORD
     
 );
@@ -241,7 +243,7 @@ $query = array(
     'dir_list' => "no",
     'dir_anc' => "no",
     'srv_code' => 'system-department',
-    'vmail_transcribe' => "mutare",
+    'vmail_transcribe' => "google",
     'subscriber_pin' => $PASSWORD
 );
 __doCurl("https://" . SERVER . "/ns-api/", CURLOPT_POST, "Authorization: Bearer " . $token, $query, null, $http_response);
@@ -262,7 +264,7 @@ $query = array(
     'dir_list' => "no",
     'dir_anc' => "no",
     'srv_code' => 'system-department',
-    'vmail_transcribe' => "mutare",
+    'vmail_transcribe' => "google",
     'subscriber_pin' => $PASSWORD
 );
 __doCurl("https://" . SERVER . "/ns-api/", CURLOPT_POST, "Authorization: Bearer " . $token, $query, null, $http_response);
@@ -283,7 +285,7 @@ $query = array(
     'callid_nmbr' => $newDID,
     'callid_emgr' => $newDID,
     'department' => 'Tech',
-    'vmail_transcribe' => "mutare",
+    'vmail_transcribe' => "google",
     'subscriber_pin' => $PASSWORD
     
     
@@ -334,7 +336,7 @@ $query = array(
     'callid_name' => $reseller,
     'callid_nmbr' => $newDID,
     'callid_emgr' => $newDID,
-    'vmail_transcribe' => "mutare",
+    'vmail_transcribe' => "google",
     'subscriber_pin' => $PASSWORD
     
 );
@@ -382,7 +384,7 @@ $query = array(
     'callid_name' => $reseller,
     'callid_nmbr' => $newDID,
     'callid_emgr' => $newDID,
-    'vmail_transcribe' => "mutare",
+    'vmail_transcribe' => "google",
     'subscriber_pin' => $PASSWORD
     
 );
@@ -431,7 +433,7 @@ $query = array(
     'callid_nmbr' => $newDID,
     'callid_emgr' => $newDID,
     'department' => 'Sales',
-    'vmail_transcribe' => "mutare",
+    'vmail_transcribe' => "google",
     'subscriber_pin' => $PASSWORD
     
 );
@@ -479,7 +481,7 @@ $query = array(
     'callid_name' => $reseller,
     'callid_nmbr' => $newDID,
     'callid_emgr' => $newDID,
-    'vmail_transcribe' => "mutare",
+    'vmail_transcribe' => "google",
     'subscriber_pin' => $PASSWORD
     
 );
@@ -651,7 +653,7 @@ $query = array(
     'action' => "create",
     'domain' => $domain,
     'scope' => "Basic User",
-    'first_name' => "Call Park",
+    'first_name' => "Park",
     'last_name' => "One",
     'dir_list' => "no",
     'dir_anc' => "no",
@@ -671,7 +673,7 @@ $query = array(
     'domain' => $domain,
     'queue' => "9001",
     'huntgroup_option' => "Call Park",
-    'description' => "Call Park One"
+    'description' => "Park One"
 );
 __doCurl("https://" . SERVER . "/ns-api/", CURLOPT_POST, "Authorization: Bearer " . $token, $query, null, $http_response);
 
@@ -716,7 +718,7 @@ $query = array(
     'action' => "create",
     'domain' => $domain,
     'scope' => "Basic User",
-    'first_name' => "Call Park",
+    'first_name' => "Park",
     'last_name' => "Two",
     'dir_list' => "no",
     'dir_anc' => "no",
@@ -736,7 +738,7 @@ $query = array(
     'domain' => $domain,
     'queue' => "9002",
     'huntgroup_option' => "Call Park",
-    'description' => "Call Park Two"
+    'description' => "Park Two"
 );
 __doCurl("https://" . SERVER . "/ns-api/", CURLOPT_POST, "Authorization: Bearer " . $token, $query, null, $http_response);
 
